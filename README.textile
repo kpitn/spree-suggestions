@@ -1,0 +1,32 @@
+h1. spree-suggestions
+
+h2. Installation
+
+<pre>
+script/extension git://github.com/kpitn/spree-suggestions.git
+</pre>
+
+h2. Use
+
+*In products/show.html*
+<pre>
+   <%  suggestions=@product.suggestions %>
+    <% if suggestions.size>0 %>
+      <tr>
+        <td colspan="2">
+        <h2><%=  t('suggestions') %>:</h2>
+        <%= render :partial => 'products/suggestions',:locals=>{:suggestions=>suggestions} %>
+        </td>
+      </tr>
+    <% end %>
+</pre>
+
+*create products/_suggestions.html*
+<pre>
+<% suggestions.each do |product| %>
+    <div class="product_thumb">
+        <%= product.images.first.attachment(:mini) if product.images.nil? %>
+        <%= link_to(product.name,:controller=>:products,:action=>:show,:id=>product.id) %><br/>
+    </div>
+<% end %>
+</pre>
