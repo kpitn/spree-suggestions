@@ -1,0 +1,26 @@
+<table class="basic-table">
+  <thead>
+  	<tr>
+  		<th><%= t("product") %></th>
+  		<th><%= t("action") %></th>
+  	</tr>
+  </thead>
+  <tbody>
+    <% suggestions.each do |suggestion| %>
+      <tr id="<%= dom_id(suggestion, :sel)%>">
+        <td valign="top"><%= suggestion.name %></td>
+  	    <td valign="top">
+		      <%= link_to_remote t('remove'), 
+		                         :url => remove_admin_product_suggestion_url(@product, suggestion),
+		                         :loading => "Element.show(#{dom_id(suggestion, :rem_spinner)})",
+		                         :update => 'selected-suggestions',
+		                         :complete => "$('#{dom_id(suggestion, :sel)}').remove(); Element.hide(#{dom_id(suggestion, :rem_spinner)});" %>
+          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(suggestion, :rem_spinner)}" %>
+  	    </td>        
+      </tr>
+    <% end %>
+    <% if suggestions.empty? %>
+     <tr><td colspan="3"><%= t('none') %>.</td></tr>
+    <% end %>
+  </tbody>
+</table>

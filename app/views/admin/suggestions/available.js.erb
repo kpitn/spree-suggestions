@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  function displayRow(){
+    var row = document.getElementById("captionRow");
+    if (row.style.display == '') row.style.display = 'none';
+    else row.style.display = '';
+  }
+</script>
+<h4><%= t('available_suggestions') %></h4>
+<table class="basic-table">
+	<thead>
+		<tr>
+			<th><%= t("name") %></th>
+			<th><%= t("action") %></th>
+		</tr>
+	</thead>
+	<tbody>
+    <% @available_suggestions.each do |suggestion| %>
+      <tr id="<%= dom_id(suggestion) %>">
+        <td valign="top"><%= suggestion.name %></td>
+		    <td valign="top">
+		      <%= link_to_remote t('select'), 
+		                         :url => select_admin_product_suggestion_path(@product, suggestion),
+		                         :loading => "Element.show(#{dom_id(suggestion, :spinner)})",
+		                         :update => 'selected-suggestions',
+		                         :complete => "$('#{dom_id(suggestion)}').remove(); Element.hide(#{dom_id(suggestion, :spinner)});" %>
+          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(suggestion, :spinner)}" %>
+		    </td>        
+      </tr>
+    <% end %>
+    <% if @available_suggestions.empty? %>
+     <tr><td colspan="3"><%= t('no_match_found') %>.</td></tr>
+    <% end %>
+  </tbody>
+</table>
