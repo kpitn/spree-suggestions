@@ -1,0 +1,6 @@
+<% if @product.suggestions.size>0 %>
+<div class="suggestions product_bloc">
+  <h2>Suggestions :</h2>
+      <%= render :partial => "/shared/products.html.erb", :locals => {:products => @product.suggestions,:taxon=>nil } %>
+</div>
+<% end %>
