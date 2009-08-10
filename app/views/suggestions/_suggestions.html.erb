@@ -1,6 +1,6 @@
 <% if @product.suggestions.size>0 %>
-<div class="suggestions product_bloc">
-  <h2>Suggestions :</h2>
-      <%= render :partial => "/shared/products.html.erb", :locals => {:products => @product.suggestions,:taxon=>nil } %>
+<div class="taxon">
+  <h2 class="product"><%= link_to "<div class='top'></div>#{tooltip("HAUT DE PAGE")} #{pluralize(@product.suggestions.size,"SUGGESTION").mb_chars.upcase}", "#", :class => 'breadcrumbs' %><div class="alpha"></div></h2>
+  <%= render :partial => "/shared/products.html.erb", :locals => {:products => @product.suggestions,:taxon=>nil } %>
 </div>
 <% end %>
