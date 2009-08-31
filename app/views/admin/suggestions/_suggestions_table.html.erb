@@ -1,6 +1,7 @@
 <table class="index">
   <thead>
   	<tr>
+  		<th><%= t("sku") %></th>
   		<th><%= t("product") %></th>
   		<th><%= t("action") %></th>
   	</tr>
@@ -8,6 +9,7 @@
   <tbody>
     <% suggestions.each do |suggestion| %>
       <tr id="<%= dom_id(suggestion, :sel)%>">
+        <td valign="top"><%= suggestion.variant.name %></td>
         <td valign="top"><%= suggestion.name %></td>
   	    <td valign="top">
 		      <%= link_to_remote t('remove'), 

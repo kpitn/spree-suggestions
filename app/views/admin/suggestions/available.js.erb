@@ -9,6 +9,7 @@
 <table class="index">
 	<thead>
 		<tr>
+			<th><%= t("sku") %></th>
 			<th><%= t("name") %></th>
 			<th><%= t("action") %></th>
 		</tr>
@@ -16,6 +17,7 @@
 	<tbody>
     <% @available_suggestions.each do |suggestion| %>
       <tr id="<%= dom_id(suggestion) %>">
+        <td valign="top"><%= suggestion.variant.sku %></td>
         <td valign="top"><%= suggestion.name %></td>
 		    <td valign="top">
 		      <%= link_to_remote t('select'), 

@@ -12,7 +12,7 @@ class Admin::SuggestionsController < Admin::BaseController
     if params[:q].blank?
       @available_suggestions = []
     else
-      @available_suggestions = Product.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
+      @available_suggestions = Product.find(:all,:include=>:variants,:conditions => ['lower(name) LIKE ? OR lower(variants.sku) LIKE ?', "%#{params[:q].downcase}%", "%#{params[:q].downcase}%"])
     end
     @available_suggestions.delete_if { |suggestion| @product.suggestions.include?(suggestion) }
     respond_to do |format|
