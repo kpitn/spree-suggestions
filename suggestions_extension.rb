@@ -10,7 +10,7 @@ class SuggestionsExtension < Spree::Extension
     # admin.tabs.add "Spree Accessories", "/admin/spree_accessories", :after => "Layouts", :visibility => [:all]
 
     Product.class_eval do
-      has_and_belongs_to_many :suggestions, :class_name => "Product", :join_table => "suggestions" , :association_foreign_key => "suggestion_product_id"
+      has_and_belongs_to_many :suggestions, :class_name => "Product", :join_table => "suggestions" , :association_foreign_key => "suggestion_product_id",:conditions=>"products.deleted_at IS NULL"
     end
 
 
