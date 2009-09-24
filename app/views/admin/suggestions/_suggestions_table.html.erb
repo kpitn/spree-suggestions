@@ -9,7 +9,7 @@
   <tbody>
     <% suggestions.each do |suggestion| %>
       <tr id="<%= dom_id(suggestion, :sel)%>">
-        <td valign="top"><%= suggestion.variant.name %></td>
+        <td valign="top"><%= suggestion.variant.sku %></td>
         <td valign="top"><%= suggestion.name %></td>
   	    <td valign="top">
 		      <%= link_to_remote t('remove'), 
